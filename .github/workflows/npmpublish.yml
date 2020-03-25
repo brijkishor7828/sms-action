@@ -1,20 +1,41 @@
-name: Greet Everyone
-# This workflow is triggered on pushes to the repository.
-on: [push]
+name: Node.js Package
+
+on:
+ release:
+   types: [created]
 
 jobs:
-  build:
-    # Job name is Greeting
-    name: Greeting
-    # This job runs on Linux
-    runs-on: ubuntu-latest
-    steps:
-      # This step uses GitHub's hello-world-javascript-action: https://github.com/actions/hello-world-javascript-action
-      - name: Hello world
-        uses: actions/hello-world-javascript-action@v1
-        with:
-          who-to-greet: 'Mona the Octocat'
-        id: hello
-      # This step prints an output (time) from the previous step's action.
-      - name: Echo the greeting's time
-        run: echo 'The time was ${{ steps.hello.outputs.time }}.'
+ build:
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v1
+     - uses: actions/setup-node@v1
+       with:
+         node-version: 12
+     - run: npm ci
+     - run: npm test
+
+ publish-gpr:
+   needs: build
+   runs-on: ubuntu-latest
+   steps:
+     - uses: actions/checkout@v1
+     - uses: actions/setup-node@v1
+       with:
+         node-version: 12
+         registry-url: https://npm.pkg.github.com/
+         scope: '@dkundel'
+     - run: npm ci
+     - run: npm publish
+       env:
+         NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+     - name: 'Sending SMS Notification'
+       uses: twilio-labs/actions-sms@v1
+       with:
+         fromPhoneNumber: ${{ secrets.TWILIO_PHONE_NUMBER }}
+         toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
+         message: 'The latest version of your package has been shipped 🎉'
+       env:
+         TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+         TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
+         TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}

@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: sagarchoudhary96/exosms-actions@v1
         with:
-          fromPhoneNumber: '49'
-          toPhoneNumber: '49'
+          fromPhoneNumber: '09513886363'
+          toPhoneNumber: '7828856652'
           message: 'The latest version of your package has been shipped 🎉'
         env:
          EXOTEL_ACCOUNT_SID: ${{ secrets.EXOTEL_ACCOUNT_SID }}

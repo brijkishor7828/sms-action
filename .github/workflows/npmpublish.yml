@@ -8,12 +8,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: twilio-labs/actions-sms@v1
+      - uses: sagarchoudhary96/exosms-actions@v1
         with:
-          fromPhoneNumber: ${{ secrets.TWILIO_PHONE_NUMBER }}
-          toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
+          fromPhoneNumber: '49'
+          toPhoneNumber: '49'
           message: 'The latest version of your package has been shipped 🎉'
         env:
-         TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
-         TWILIO_API_KEY: ${{ secrets.TWILIO_API_KEY }}
-         TWILIO_API_SECRET: ${{ secrets.TWILIO_API_SECRET }}
+         EXOTEL_ACCOUNT_SID: ${{ secrets.EXOTEL_ACCOUNT_SID }}
+         EXOTEL_API_KEY: ${{ secrets.EXOTEL_API_KEY }}
+         EXOTEL_API_TOKEN: ${{ secrets.EXOTEL_API_TOKEN }}

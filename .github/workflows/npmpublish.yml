@@ -16,5 +16,5 @@ jobs:
         NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
       with:
         nexmoNumber: 'Vonage SMS API'
-        recipientNumber: '8329072532'
+        recipientNumber: '918329072532'
         message: "New push on ${{ github.repository }} from ${{ github.actor }}"

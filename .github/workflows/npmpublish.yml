@@ -15,6 +15,4 @@ jobs:
           senderid: ${{ secrets.senderid }}
           toPhoneNumber: '917828856652'
           message: 'Hello from github'
-      env:
-          SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-          SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+     

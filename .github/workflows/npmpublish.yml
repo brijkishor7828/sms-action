@@ -5,14 +5,17 @@ on:
     types: [created]
 
 jobs:
-  build:
+  send-sms:
+    name: Send SMS
     runs-on: ubuntu-latest
     steps:
-      - uses: brijkishor7828/smsalert@v1
-        with:
-          senderid: ${{ secrets.SMSALERT_SENDERID }}
-          toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
-          message: 'The latest version of your package has been shipped 🎉'
-        env:
-         SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
-         SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
+    - name: Send SMS
+      uses: nexmo-community/nexmo-sms-action@master
+      env:
+        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
+        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+      with:
+        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
+        recipientNumber: 14155512345
+        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
+

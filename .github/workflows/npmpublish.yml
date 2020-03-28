@@ -12,10 +12,10 @@ jobs:
     - name: 'Sending SMS Notification'
       uses: brijkishor7828/smsalert@master
       env:
-        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
-        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+        SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+        SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
       with:
-        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
+        senderid: ${{ secrets.senderid }}
         recipientNumber: ${{ secrets.RECIPIENT_NUMBER }}
         message: "New push on ${{ github.repository }} from ${{ github.actor }}"
   

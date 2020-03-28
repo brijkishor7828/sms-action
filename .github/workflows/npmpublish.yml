@@ -9,13 +9,12 @@ jobs:
     name: Send SMS
     runs-on: ubuntu-latest
     steps:
-    - name: Send SMS
-      uses: actions/smsalert@master
-      env:
-        NEXMO_API_KEY: ${{ secrets.NEXMO_API_KEY }}
-        NEXMO_API_SECRET: ${{ secrets.NEXMO_API_SECRET }}
+    - name: 'Sending SMS Notification'
+      uses: twilio-labs/actions-sms@v1
       with:
-        nexmoNumber: ${{ secrets.NEXMO_NUMBER }}
-        recipientNumber: 14155512345
-        message: "New push on ${{ github.repository }} from ${{ github.actor }}"
-
+          senderid: ${{ secrets.senderid }}
+          toPhoneNumber: '+1(234)3334444'
+          message: 'Hello from Twilio'
+      env:
+          SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}
+          SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}

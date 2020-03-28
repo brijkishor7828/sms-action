@@ -16,6 +16,6 @@ jobs:
         SMSALERT_PASSWORD: ${{ secrets.SMSALERT_PASSWORD }}
       with:
         senderid: ${{ secrets.senderid }}
-        recipientNumber: ${{ secrets.RECIPIENT_NUMBER }}
+        toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
         message: "New push on ${{ github.repository }} from ${{ github.actor }}"
   

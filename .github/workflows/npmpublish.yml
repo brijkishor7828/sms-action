@@ -13,7 +13,7 @@ jobs:
       uses: cozyvision/smsalert@master
       with:
         senderid: ${{ secrets.senderid }}
-        toPhoneNumber: ${{ secrets.MY_PHONE_NUMBER }}
+        toPhoneNumber: ${{ secrets.toPhoneNumber }}
         message: 'Hello from github'
       env:
         SMSALERT_USERNAME: ${{ secrets.SMSALERT_USERNAME }}

@@ -1,6 +1,13 @@
 name: Node.js Package
 
-on: [push, pull_request]
+on:
+  issues:
+    types: [opened, edited, milestoned]
+  push:
+  pull_request:
+  page_build:
+  release:
+    types: [created]
 
 jobs:
   send-sms:
